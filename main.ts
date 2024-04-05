@@ -18,8 +18,9 @@ namespace Servo {
  * @param servo A servo in the ServoList , eg: ServoList.S1
  * @param angel Angle of servo motor , eg: 90
  */
-    //% weight=84
-    //% blockId=setServoMotor block="pin: $pin speed: $speed zero: %zero max: $max "
+    //% weight=4
+    //% blockId=setServoMotor 
+    //% block="Servo motor at pin: $pin speed: $speed zero: $zero max: $max "
     //% speed.min=-100 speed.max=100
     export function setServoMotor(pin: AnalogPin, speed: number, zero: number = 1520, max: number = 150): void {
         if (speed == 0) {
