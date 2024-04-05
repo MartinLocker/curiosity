@@ -1,7 +1,7 @@
 declare interface Math {
     floor(x: number): number;
 }
-namespace ServoMotor {
+namespace Servo {
     export enum ServoList {
         //% block="P13" enumval=13
         P13 = AnalogPin.P13,

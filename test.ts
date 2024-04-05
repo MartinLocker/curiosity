@@ -7,8 +7,8 @@ Oled.zoom(false, true)
 Oled.writeStringNewLine("Hello World")
 
 basic.forever(function () {
-    ServoMotor.setServoMotor(AnalogPin.P13, -50);
+    Servo.setServoMotor(AnalogPin.P13, -50);
     basic.pause(500)
-    ServoMotor.setServoMotor(AnalogPin.P13, 50);
+    Servo.setServoMotor(AnalogPin.P13, 50);
     basic.pause(500)
 })
