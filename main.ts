@@ -19,8 +19,8 @@ namespace ServoMotor {
  * @param angel Angle of servo motor , eg: 90
  */
     //% weight=84
-    //% blockId=setServoAngle block="Set %servoType servo %servo angle to %angle"
-    //% angle.min=0 angle.max=360
+    //% blockId=setServoMotor block="pin: $pin speed: $speed zero: %zero max: $max "
+    //% speed.min=-100 speed.max=100
     export function setServoMotor(pin: AnalogPin, speed: number, zero: number = 1520, max: number = 150): void {
         if (speed == 0) {
             pins.analogWritePin(pin, 0);
