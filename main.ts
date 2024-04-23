@@ -26,7 +26,8 @@ namespace Servo {
         if (speed == 0) {
             pins.analogWritePin(pin, 0);
         } else {
-            let x = Math.map(speed, -100, 100, zero - max, zero + max);
+            let x = Math.constrain(speed, -100, 100)
+            x = Math.map(x, -100, 100, zero - max, zero + max);
             pins.servoSetPulse(pin, x);
         }
     }
