@@ -1,6 +1,30 @@
 declare interface Math {
     floor(x: number): number;
 }
+namespace Counter {
+    let startTime = 0
+    let timeInterval = 0    
+
+    //% weight=4
+    //% block="start countdown $time"
+    //% time.min=1 time.max=10000
+    export function startCountdown(time: number): void {
+        startTime = control.millis()
+        timeInterval = time
+    }
+
+    //% weight=4
+    //% block="countdown finished"
+    export function countdownFinished(): boolean {
+        if (timeInterval > 0  && control.millis() - startTime >= timeInterval) {
+            timeInterval = 0
+            return true
+        } else {
+            return false
+        }
+    }
+
+}
 namespace Servo {
     export enum ServoList {
         //% block="P13" enumval=13
@@ -28,6 +52,19 @@ namespace Servo {
         } else {
             let x = Math.constrain(speed, -100, 100)
             x = Math.map(x, -100, 100, zero - max, zero + max);
+            pins.servoSetPulse(pin, x);
+        }
+    }
+
+    //% weight=4
+    //% block="servo at pin $pin position $pos"
+    //% pos.min=-90 pos.max=90
+    export function setServoPosition(pin: AnalogPin, pos: number, zero: number = 1500, max: number = 1000): void {
+        if (pos == 0) {
+            pins.analogWritePin(pin, 0);
+        } else {
+            let x = Math.constrain(pos, -90, 90)
+            x = Math.map(x, -90, 90, zero - max, zero + max);
             pins.servoSetPulse(pin, x);
         }
     }
