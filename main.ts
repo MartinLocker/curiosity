@@ -26,6 +26,8 @@ namespace Counter {
 }
 
 namespace Servo {
+    let zero = 1530;
+
     export enum ServoList {
         //% block="P13" enumval=13
         P13 = AnalogPin.P13,
@@ -44,9 +46,16 @@ namespace Servo {
     //% block="Servo motor at pin: $pin speed: $speed zero: $zero max: $max"
  */
     //% weight=4
+    //% block="servo motor zero $_zero"
+    //% _zero.min=1000 _zero.max=2000
+    export function setZero(_zero: number): void {
+        zero = _zero;
+    }
+
+    //% weight=4
     //% block="servo motor at pin $pin speed $speed"
     //% speed.min=-100 speed.max=100
-    export function setServoMotor(pin: AnalogPin, speed: number, zero: number = 1540, max: number = 150): void {
+    export function setServoMotor(pin: AnalogPin, speed: number, max: number = 150): void {
         if (speed == 0) {
             pins.analogWritePin(pin, 0);
         } else {
