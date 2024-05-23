@@ -46,7 +46,7 @@ namespace Servo {
     //% weight=4
     //% block="servo motor at pin $pin speed $speed"
     //% speed.min=-100 speed.max=100
-    export function setServoMotor(pin: AnalogPin, speed: number, zero: number = 1530, max: number = 150): void {
+    export function setServoMotor(pin: AnalogPin, speed: number, zero: number = 1540, max: number = 150): void {
         if (speed == 0) {
             pins.analogWritePin(pin, 0);
         } else {
