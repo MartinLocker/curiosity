@@ -24,7 +24,6 @@ namespace Counter {
         }
     }
 }
-
 namespace Servo {
     let zero = 1530;
 
@@ -72,9 +71,9 @@ namespace Servo {
         if (pos == 0) {
             pins.analogWritePin(pin, 0);
         } else {
-            let x = Math.constrain(pos, -90, 90)
-            x = Math.map(x, -90, 90, zero - max, zero + max);
-            pins.servoSetPulse(pin, x);
+            let x2 = Math.constrain(pos, -90, 90)
+            x2 = Math.map(x2, -90, 90, zero - max, zero + max);
+            pins.servoSetPulse(pin, x2);
         }
     }
 
@@ -316,14 +315,14 @@ namespace Oled {
     function drawShape(pixels: Array<Array<number>>) {
         let x1 = displayWidth
         let y1 = displayHeight * 8
-        let x2 = 0
+        let x22 = 0
         let y2 = 0
         for (let p = 0; p < pixels.length; p++) {
             if (pixels[p][0] < x1) {
                 x1 = pixels[p][0]
             }
-            if (pixels[p][0] > x2) {
-                x2 = pixels[p][0]
+            if (pixels[p][0] > x22) {
+                x22 = pixels[p][0]
             }
             if (pixels[p][1] < y1) {
                 y1 = pixels[p][1]
@@ -336,7 +335,7 @@ namespace Oled {
         let page22 = Math.floor(y2 / 8)
         let line2 = pins.createBuffer(2)
         line2[0] = 0x40
-        for (let x3 = x1; x3 <= x2; x3++) {
+        for (let x3 = x1; x3 <= x22; x3++) {
             for (let page3 = page1; page3 <= page22; page3++) {
                 line2[1] = 0x00
                 for (let q = 0; q < pixels.length; q++) {
@@ -711,4 +710,3 @@ namespace Oled {
         clear()
     }
 }
-
