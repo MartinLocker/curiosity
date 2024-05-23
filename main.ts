@@ -25,7 +25,7 @@ namespace Counter {
     }
 }
 namespace Servo {
-    let zero = 1530;
+    let zero: number
 
     export enum ServoList {
         //% block="P13" enumval=13
@@ -45,10 +45,10 @@ namespace Servo {
     //% block="Servo motor at pin: $pin speed: $speed zero: $zero max: $max"
  */
     //% weight=4
-    //% block="servo motor zero $_zero"
-    //% _zero.min=1000 _zero.max=2000
-    export function setZero(_zero: number): void {
-        zero = _zero;
+    //% block="servo motor zero $x"
+    //% x.min=1000 x.max=2000
+    export function setZero(x: number = 1500): void {
+        zero = x;
     }
 
     //% weight=4
@@ -67,12 +67,12 @@ namespace Servo {
     //% weight=4
     //% block="servo at pin $pin position $pos"
     //% pos.min=-90 pos.max=90
-    export function setServoPosition(pin: AnalogPin, pos: number, zero: number = 1500, max: number = 1000): void {
+    export function setServoPosition(pin: AnalogPin, pos: number, max: number = 1000): void {
         if (pos == 0) {
             pins.analogWritePin(pin, 0);
         } else {
             let x2 = Math.constrain(pos, -90, 90)
-            x2 = Math.map(x2, -90, 90, zero - max, zero + max);
+            x2 = Math.map(x2, -90, 90, 1500 - max, 1500 + max);
             pins.servoSetPulse(pin, x2);
         }
     }
